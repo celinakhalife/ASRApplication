@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import { Home } from "./screens/home";
 
 function App() {
-  return <div></div>;
+  return <Home></Home>;
 }
 
 export default App;
