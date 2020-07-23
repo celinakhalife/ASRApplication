@@ -41,13 +41,6 @@ export const Home = () => {
     ASRInstance.stop();
   };
 
-  const _onUpdatePhrases = event => {
-    const nextPhrases = event.target.value.split("\n");
-    if (ASRInstance.isStarted()) {
-      ASRInstance.updateSpottingConfig(compact(nextPhrases));
-    }
-  };
-
   const onMessage = (error, results) => {
     if (!error) {
       const {
@@ -85,6 +78,8 @@ export const Home = () => {
         break;
       case CONNECTION_STATUS.ONLINE:
         stopSession();
+        break;
+      default:
         break;
     }
   };
