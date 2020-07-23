@@ -10,6 +10,7 @@ export const Bubble = styled.div`
   border-radius: 5px;
   margin-bottom: 15px;
   position: relative;
+  margin-right: 7px;
   &:after {
     content: "";
     position: absolute;
