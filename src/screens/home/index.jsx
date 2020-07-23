@@ -93,7 +93,7 @@ export const Home = () => {
     <Styled.Main>
       <Header>Status: {connectionStatus}</Header>
       <Styled.Container flexDirection="row">
-        <Styled.Column flex={2}>
+        <Styled.Column flex={2} flexDirection="column">
           {displayedSentences.map((sentence, index) => (
             <Bubble key={index} sentence={sentence}></Bubble>
           ))}

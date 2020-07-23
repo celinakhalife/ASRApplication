@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+const flexDirectionType = PropTypes.oneOf(["row", "column"]);
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
@@ -13,7 +14,7 @@ export const Container = styled.div`
 `;
 
 Container.propTypes = {
-  flexDirection: PropTypes.oneOf(["row", "column"])
+  flexDirection: flexDirectionType
 };
 
 Container.defaultProps = {
@@ -23,12 +24,15 @@ Container.defaultProps = {
 export const Column = styled.div`
   display: flex;
   flex: ${props => props.flex};
+  flex-direction: ${props => props.flexDirection};
 `;
 
 Column.propTypes = {
-  flex: PropTypes.number
+  flex: PropTypes.number,
+  flexDirection: flexDirectionType
 };
 
 Column.defaultProps = {
-  flex: 1
+  flex: 1,
+  flexDirection: "row"
 };
