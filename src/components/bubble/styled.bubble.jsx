@@ -11,6 +11,7 @@ export const Bubble = styled.div`
   margin-bottom: 15px;
   position: relative;
   margin-right: 7px;
+  flex-grow: 0;
   &:after {
     content: "";
     position: absolute;

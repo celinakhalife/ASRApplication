@@ -8,7 +8,7 @@ import CONNECTION_STATUS from "../../consts/connectionStatus";
 import Header from "../../components/header";
 import Button from "../../components/button";
 import Bubble from "../../components/bubble";
-
+import SpottingPhrases from "../../renderers/spottingPhrases";
 import * as Styled from "./styled.home";
 
 const ASRInstance = new ASRClient("wss://vibe-rc.i2x.ai");
@@ -87,13 +87,15 @@ export const Home = () => {
   return (
     <Styled.Main>
       <Header>Status: {connectionStatus}</Header>
-      <Styled.Container flexDirection="row">
+      <Styled.Container flexDirection="row" flexGrow="1">
         <Styled.Column flex={2} flexDirection="column">
           {displayedSentences.map((sentence, index) => (
             <Bubble key={index} sentence={sentence}></Bubble>
           ))}
         </Styled.Column>
-        <Styled.Column></Styled.Column>
+        <Styled.Column flexDirection="column">
+          <SpottingPhrases />
+        </Styled.Column>
       </Styled.Container>
 
       <Button disabled={disabledButton} onClick={handleButtonClick}>

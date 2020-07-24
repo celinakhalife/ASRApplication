@@ -1,8 +1,9 @@
 import { ACTIONS } from "./actionTypes";
+import defaultSpottingPhrases from "../consts/defaultSpottingPhrases";
 
 const initialState = {
   phrases: [],
-  spottingPhrases: []
+  spottingPhrases: defaultSpottingPhrases
 };
 
 export default function(state = initialState, action) {
@@ -34,6 +35,16 @@ export default function(state = initialState, action) {
       const { content } = action;
       const { spottingPhrases } = state;
       spottingPhrases.push(content);
+
+      return {
+        ...state,
+        spottingPhrases: spottingPhrases
+      };
+    }
+    case ACTIONS.UPDATE_SPOTTING_PHRASE: {
+      const { content, index } = action;
+      const { spottingPhrases } = state;
+      spottingPhrases[index] = content;
 
       return {
         ...state,

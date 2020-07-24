@@ -9,7 +9,7 @@ export const Button = styled.button`
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: 2px 2px #dcdcdc;
+  box-shadow: 2px 2px ${colors.shadowGrey};
   transition: box-shadow 0.1s ease, transform 0.1s ease,
     background-color 0.2s ease;
   &:disabled {

@@ -6,15 +6,20 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   padding: 50px;
+  max-width: 800px;
+  margin: 0 auto;
+  height: calc(100vh - 150px);
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: ${props => props.flexDirection};
+  flex-grow: ${props => props.flexGrow};
 `;
 
 Container.propTypes = {
-  flexDirection: flexDirectionType
+  flexDirection: flexDirectionType,
+  flexGrow: PropTypes.string
 };
 
 Container.defaultProps = {
