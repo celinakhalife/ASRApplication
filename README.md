@@ -67,7 +67,7 @@ yarn install
 npm install
 ```
 
-Runs the application in the development mode.
+Run the application in the development mode.
 
 ```
 # If you're using yarn
