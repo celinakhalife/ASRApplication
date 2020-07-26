@@ -34,11 +34,15 @@ const SpottingPhrases = () => {
       content: ""
     });
   };
+
+  const hasEmptyRow = spottingSentences.filter(item => !item).length > 0;
   return (
     <Card>
       <Styled.Header>
         <Styled.Title>Spotting Phrases</Styled.Title>
-        <IconButton icon={icons.add} onClick={addEmptyPhrase}></IconButton>
+        {!hasEmptyRow && (
+          <IconButton icon={icons.add} onClick={addEmptyPhrase}></IconButton>
+        )}
       </Styled.Header>
       <Styled.Container>
         {spottingSentences.map((sentence, index) => (
