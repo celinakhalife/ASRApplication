@@ -11,7 +11,11 @@ export const IconButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   background-image: ${props => `url(${props.icon})`};
-  :hover {
+  :hover&:enabled {
     transform: scale(1.1);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: initial;
   }
 `;

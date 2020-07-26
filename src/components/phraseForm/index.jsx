@@ -34,7 +34,7 @@ const PhraseForm = ({
   };
 
   const checkKeyDown = event => {
-    if (event.key === "Enter") {
+    if (spottingPhrase && event.key === "Enter") {
       update();
     }
   };
@@ -49,7 +49,11 @@ const PhraseForm = ({
             value={spottingPhrase}
             onKeyDown={checkKeyDown}
           ></Styled.Input>
-          <IconButton icon={icons.check} onClick={update}></IconButton>
+          <IconButton
+            icon={icons.check}
+            onClick={update}
+            disabled={!spottingPhrase}
+          ></IconButton>
         </Styled.Container>
       ) : (
         <Styled.Container>
