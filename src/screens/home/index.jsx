@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { compact } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 
-import { ASRClient } from "../../utils/asr/ASRClient";
+import { ASRClient } from "../../adapters/asr/ASRClient";
 import { ACTIONS } from "../../redux/actionTypes";
 import CONNECTION_STATUS from "../../consts/connectionStatus";
 import Header from "../../components/header";
