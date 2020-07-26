@@ -1,19 +1,20 @@
 # ASRApplication
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ASRApplication is responsible for capturing audio input, sending data to i2x service and returning speech transcripts.
 
 ### Architecture
 
-#### public
+#### /public
 
 The `public` directory contains the root html file and the icons folder.   
 
-#### src/adapters
+#### /src/adapters
 
 The `adapters` directory contains the ASR connection adapter.   
 
-#### src/components
+#### /src/components
 
 The `components` directory contains the shared components such as buttons, icons, cards, headers, etc.
 
@@ -23,24 +24,24 @@ All components are composed of the below two files:
 - styled.jsx: Exports the styled components specific to this component.
 
 
-#### src/consts
+#### /src/consts
 
 The `consts` directory contains all the constants used in this project.
 
 
-#### src/redux
+#### /src/redux
 
 The `redux` directory contains the scripts to create and export the redux store that handles all ASR connection events.
 
-#### src/renderers
+#### /src/renderers
 
 The `renderers` directory contains the components and the logic used to create sections of the application.
 
-#### src/screens
+#### /src/screens
 
 The `screens` directory contains all the pages of the application (in this case, it only contains the home component).
 
-#### src/utils
+#### /src/utils
 
 The `utils` directory contains util functions used throughout the application.
 
