@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { compact } from "lodash";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { ASRClient } from "../../adapters/asr/ASRClient";
 import { ACTIONS } from "../../redux/actionTypes";
 import CONNECTION_STATUS from "../../consts/connectionStatus";
 import Header from "../../components/header";
@@ -11,33 +9,40 @@ import AllPhrases from "../../renderers/allPhrases";
 import SpottingPhrases from "../../renderers/spottingPhrases";
 import * as Styled from "./styled.home";
 
-const ASRInstance = new ASRClient("wss://vibe-rc.i2x.ai");
-
 export const Home = () => {
   const dispatch = useDispatch();
-  const spottingSentences = useSelector(state => state.spottingPhrases, []);
-
-  const [connectionStatus, setConnectionStatus] = useState(
-    CONNECTION_STATUS.OFFLINE
-  );
+  const connectionStatus = useSelector(state => state.connectionStatus, "");
+  const asrConnection = useSelector(state => state.asrConnection, null);
 
   useEffect(() => {
-    ASRInstance.onConnect = () => {
-      setConnectionStatus(CONNECTION_STATUS.ONLINE);
-    };
-    ASRInstance.onClose = () => {
-      setConnectionStatus(CONNECTION_STATUS.OFFLINE);
-    };
-  }, []);
+    if (asrConnection) {
+      asrConnection.onConnect = () => {
+        dispatch({
+          type: ACTIONS.UPDATE_CONNECTION_STATUS,
+          content: { status: CONNECTION_STATUS.ONLINE }
+        });
+      };
+      asrConnection.onClose = () => {
+        dispatch({
+          type: ACTIONS.UPDATE_CONNECTION_STATUS,
+          content: { status: CONNECTION_STATUS.OFFLINE }
+        });
+      };
+    }
+    // eslint-disable-next-line
+  }, [asrConnection]);
 
   const startSession = () => {
-    setConnectionStatus(CONNECTION_STATUS.CONNECTING);
-    ASRInstance.start(compact(spottingSentences), onMessage);
+    dispatch({
+      type: ACTIONS.CONNECTION_START,
+      content: { onMessage: onMessage }
+    });
   };
 
   const stopSession = () => {
-    setConnectionStatus(CONNECTION_STATUS.DISCONNECTING);
-    ASRInstance.stop();
+    dispatch({
+      type: ACTIONS.CONNECTION_STOP
+    });
   };
 
   const onMessage = (error, results) => {

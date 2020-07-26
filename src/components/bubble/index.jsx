@@ -9,7 +9,11 @@ const Bubble = ({ sentence }) => {
   let phrase = sentence.phrase;
   sentence.spotted.forEach(
     spotted =>
-      (phrase = replace(phrase.toLowerCase(), spotted, `<b>${spotted}</b>`))
+      (phrase = replace(
+        phrase.toLowerCase(),
+        new RegExp(spotted, "g"),
+        `<b>${spotted}</b>`
+      ))
   );
   return (
     <Styled.Bubble
