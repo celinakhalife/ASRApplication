@@ -87,12 +87,8 @@ export const Home = () => {
     <Styled.Main>
       <Header>Status: {connectionStatus}</Header>
       <Styled.Container flexDirection="row" flexGrow="1">
-        <Styled.Card flex={2}>
-          <AllPhrases />
-        </Styled.Card>
-        <Styled.Card>
-          <SpottingPhrases />
-        </Styled.Card>
+        <AllPhrases />
+        <SpottingPhrases />
       </Styled.Container>
 
       <Button disabled={disabledButton} onClick={handleButtonClick}>

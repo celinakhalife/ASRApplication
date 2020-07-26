@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ACTIONS } from "../../redux/actionTypes";
+import Card from "../../components/card";
 import PhraseForm from "../../components/phraseForm";
 import IconButton from "../../components/iconButton";
 import icons from "../../consts/icons";
@@ -34,7 +35,7 @@ const SpottingPhrases = () => {
     });
   };
   return (
-    <>
+    <Card>
       <Styled.Header>
         <Styled.Title>Spotting Phrases</Styled.Title>
         <IconButton icon={icons.add} onClick={addEmptyPhrase}></IconButton>
@@ -51,7 +52,7 @@ const SpottingPhrases = () => {
           ></PhraseForm>
         ))}
       </Styled.Container>
-    </>
+    </Card>
   );
 };
 
