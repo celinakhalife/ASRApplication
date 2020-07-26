@@ -14,3 +14,8 @@ export const Input = styled.input`
   border-bottom: 1px solid ${colors.grey};
   font-size: 1rem;
 `;
+
+export const Phrase = styled.span`
+  flex-grow: 1;
+  padding: 0 15px;
+`;

@@ -7,7 +7,7 @@ import { ACTIONS } from "../../redux/actionTypes";
 import CONNECTION_STATUS from "../../consts/connectionStatus";
 import Header from "../../components/header";
 import Button from "../../components/button";
-import Bubble from "../../components/bubble";
+import AllPhrases from "../../renderers/allPhrases";
 import SpottingPhrases from "../../renderers/spottingPhrases";
 import * as Styled from "./styled.home";
 
@@ -15,7 +15,6 @@ const ASRInstance = new ASRClient("wss://vibe-rc.i2x.ai");
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const displayedSentences = useSelector(state => state.phrases, []);
   const spottingSentences = useSelector(state => state.spottingPhrases, []);
 
   const [connectionStatus, setConnectionStatus] = useState(
@@ -88,14 +87,12 @@ export const Home = () => {
     <Styled.Main>
       <Header>Status: {connectionStatus}</Header>
       <Styled.Container flexDirection="row" flexGrow="1">
-        <Styled.Column flex={2} flexDirection="column">
-          {displayedSentences.map((sentence, index) => (
-            <Bubble key={index} sentence={sentence}></Bubble>
-          ))}
-        </Styled.Column>
-        <Styled.Column flexDirection="column">
+        <Styled.Card flex={2}>
+          <AllPhrases />
+        </Styled.Card>
+        <Styled.Card>
           <SpottingPhrases />
-        </Styled.Column>
+        </Styled.Card>
       </Styled.Container>
 
       <Button disabled={disabledButton} onClick={handleButtonClick}>

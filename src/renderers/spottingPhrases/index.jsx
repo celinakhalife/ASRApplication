@@ -6,6 +6,8 @@ import PhraseForm from "../../components/phraseForm";
 import IconButton from "../../components/iconButton";
 import icons from "../../consts/icons";
 
+import * as Styled from "./styled.spotting-phrases";
+
 const SpottingPhrases = () => {
   const dispatch = useDispatch();
   const spottingSentences = useSelector(state => state.spottingPhrases, []);
@@ -33,17 +35,22 @@ const SpottingPhrases = () => {
   };
   return (
     <>
-      {spottingSentences.map((sentence, index) => (
-        <PhraseForm
-          key={index}
-          index={index}
-          sentence={sentence}
-          defaultEdit={!sentence}
-          updateSpottingPhrase={updateSpottingPhrase}
-          removeSpottingPhrase={removeSpottingPhrase}
-        ></PhraseForm>
-      ))}
-      <IconButton icon={icons.add} onClick={addEmptyPhrase}></IconButton>
+      <Styled.Header>
+        <Styled.Title>Spotting Phrases</Styled.Title>
+        <IconButton icon={icons.add} onClick={addEmptyPhrase}></IconButton>
+      </Styled.Header>
+      <Styled.Container>
+        {spottingSentences.map((sentence, index) => (
+          <PhraseForm
+            key={index}
+            index={index}
+            sentence={sentence}
+            defaultEdit={!sentence}
+            updateSpottingPhrase={updateSpottingPhrase}
+            removeSpottingPhrase={removeSpottingPhrase}
+          ></PhraseForm>
+        ))}
+      </Styled.Container>
     </>
   );
 };

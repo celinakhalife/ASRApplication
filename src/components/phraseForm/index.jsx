@@ -30,6 +30,7 @@ const PhraseForm = ({
 
   const remove = () => {
     removeSpottingPhrase(index);
+    setEditMode(false);
   };
 
   const checkKeyDown = event => {
@@ -42,26 +43,22 @@ const PhraseForm = ({
     <>
       {editMode ? (
         <Styled.Container>
+          <IconButton icon={icons.delete} onClick={remove}></IconButton>
           <Styled.Input
             onChange={updateSentence}
             value={spottingPhrase}
             onKeyDown={checkKeyDown}
           ></Styled.Input>
-          <div>
-            <IconButton icon={icons.check} onClick={update}></IconButton>
-            <IconButton icon={icons.delete} onClick={remove}></IconButton>
-          </div>
+          <IconButton icon={icons.check} onClick={update}></IconButton>
         </Styled.Container>
       ) : (
         <Styled.Container>
-          <span>{sentence}</span>
-          <div>
-            <IconButton
-              icon={icons.edit}
-              onClick={() => setEditMode(true)}
-            ></IconButton>
-            <IconButton icon={icons.delete} onClick={remove}></IconButton>
-          </div>
+          <IconButton icon={icons.delete} onClick={remove}></IconButton>
+          <Styled.Phrase>{sentence}</Styled.Phrase>
+          <IconButton
+            icon={icons.edit}
+            onClick={() => setEditMode(true)}
+          ></IconButton>
         </Styled.Container>
       )}
     </>
