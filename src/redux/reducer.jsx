@@ -12,6 +12,15 @@ const initialState = {
   connectionStatus: CONNECTION_STATUS.OFFLINE
 };
 
+const updateSpottingPhrases = (
+  asrConnection,
+  connectionStatus,
+  spottingPhrases
+) => {
+  if (connectionStatus === CONNECTION_STATUS.ONLINE)
+    asrConnection.updateSpottingConfig(compact(spottingPhrases));
+};
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.UPDATE_CONNECTION_STATUS: {
@@ -80,9 +89,9 @@ export default function(state = initialState, action) {
 
     case ACTIONS.ADD_SPOTTING_PHRASE: {
       const { content } = action;
-      const { spottingPhrases, asrConnection } = state;
+      const { spottingPhrases, connectionStatus, asrConnection } = state;
       spottingPhrases.push(content);
-      asrConnection.updateSpottingConfig(compact(spottingPhrases));
+      updateSpottingPhrases(asrConnection, connectionStatus, spottingPhrases);
       return {
         ...state,
         spottingPhrases: spottingPhrases
@@ -91,10 +100,9 @@ export default function(state = initialState, action) {
 
     case ACTIONS.UPDATE_SPOTTING_PHRASE: {
       const { content, index } = action;
-      const { spottingPhrases, asrConnection } = state;
+      const { spottingPhrases, connectionStatus, asrConnection } = state;
       spottingPhrases[index] = content;
-      asrConnection.updateSpottingConfig(compact(spottingPhrases));
-
+      updateSpottingPhrases(asrConnection, connectionStatus, spottingPhrases);
       return {
         ...state,
         spottingPhrases: spottingPhrases
@@ -103,10 +111,9 @@ export default function(state = initialState, action) {
 
     case ACTIONS.REMOVE_SPOTTING_PHRASE: {
       const { index } = action;
-      const { spottingPhrases, asrConnection } = state;
+      const { spottingPhrases, connectionStatus, asrConnection } = state;
       spottingPhrases.splice(index, 1);
-      asrConnection.updateSpottingConfig(compact(spottingPhrases));
-
+      updateSpottingPhrases(asrConnection, connectionStatus, spottingPhrases);
       return {
         ...state,
         spottingPhrases: spottingPhrases
