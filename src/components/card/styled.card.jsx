@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import breakpoints from "../../consts/breakpoints";
 import colors from "../../consts/colors";
 
 export const Card = styled.div`
@@ -12,6 +13,11 @@ export const Card = styled.div`
   margin-bottom: 30px;
   box-sizing: border-box;
   border: 1px solid ${colors.lightGrey};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: auto;
+    min-height: 100px;
+  }
 `;
 
 Card.propTypes = {

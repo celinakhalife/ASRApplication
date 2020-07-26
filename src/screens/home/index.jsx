@@ -91,7 +91,7 @@ export const Home = () => {
   return (
     <Styled.Main>
       <Header>Status: {connectionStatus}</Header>
-      <Styled.Container flexDirection="row" flexGrow="1">
+      <Styled.Container flexGrow="1">
         <AllPhrases />
         <SpottingPhrases />
       </Styled.Container>

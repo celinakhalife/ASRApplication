@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const flexDirectionType = PropTypes.oneOf(["row", "column"]);
+import breakpoints from "../../consts/breakpoints";
+
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
@@ -12,12 +13,14 @@ export const Main = styled.main`
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: ${props => props.flexDirection};
+  flex-direction: row;
   flex-grow: ${props => props.flexGrow};
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column-reverse;
+  }
 `;
 
 Container.propTypes = {
-  flexDirection: flexDirectionType,
   flexGrow: PropTypes.string
 };
 
