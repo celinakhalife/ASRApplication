@@ -13,6 +13,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   const connectionStatus = useSelector(state => state.connectionStatus, "");
   const asrConnection = useSelector(state => state.asrConnection, null);
+  const connectionError = useSelector(state => state.connectionError, null);
 
   useEffect(() => {
     if (asrConnection) {
@@ -46,7 +47,15 @@ export const Home = () => {
   };
 
   const onMessage = (error, results) => {
-    if (!error) {
+    if (error) {
+      const {
+        originalError: { message }
+      } = error;
+      dispatch({
+        type: ACTIONS.CONNECTION_ERROR,
+        content: { connectionError: message }
+      });
+    } else {
       const {
         transcript: { utterance },
         spotted
@@ -90,7 +99,7 @@ export const Home = () => {
 
   return (
     <Styled.Main>
-      <Header>Status: {connectionStatus}</Header>
+      <Header>Status: {connectionError || connectionStatus}</Header>
       <Styled.Container flexGrow="1">
         <AllPhrases />
         <SpottingPhrases />

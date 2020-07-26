@@ -9,7 +9,8 @@ const initialState = {
   phrases: [],
   spottingPhrases: defaultSpottingPhrases,
   asrConnection: new ASRClient("wss://vibe-rc.i2x.ai"),
-  connectionStatus: CONNECTION_STATUS.OFFLINE
+  connectionStatus: CONNECTION_STATUS.OFFLINE,
+  connectionError: ""
 };
 
 const updateSpottingPhrases = (
@@ -23,6 +24,18 @@ const updateSpottingPhrases = (
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case ACTIONS.CONNECTION_ERROR: {
+      const {
+        content: { connectionError }
+      } = action;
+
+      return {
+        ...state,
+        connectionStatus: CONNECTION_STATUS.OFFLINE,
+        connectionError: connectionError
+      };
+    }
+
     case ACTIONS.UPDATE_CONNECTION_STATUS: {
       const {
         content: { status }
@@ -43,6 +56,7 @@ export default function(state = initialState, action) {
       asrConnection.start(compact(spottingPhrases), onMessage);
       return {
         ...state,
+        connectionError: "",
         connectionStatus: CONNECTION_STATUS.CONNECTING
       };
     }
