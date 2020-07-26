@@ -59,6 +59,8 @@ Clone ASRApplication repository.
 
 Change the working directory to ASRApplication.
 
+`cd ASRApplication`
+
 Install dependencies in the local node_modules folder.
 
 ```
