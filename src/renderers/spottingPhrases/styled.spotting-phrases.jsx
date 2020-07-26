@@ -24,5 +24,5 @@ export const Title = styled.h2`
 export const Container = styled.div`
   height: 100%;
   overflow: auto;
-  padding: 30px 0;
+  padding: 45px 15px 15px 15px;
 `;
