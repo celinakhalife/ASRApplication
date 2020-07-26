@@ -43,12 +43,12 @@ export const Home = () => {
   const onMessage = (error, results) => {
     if (!error) {
       const {
-        transcript: { utterance }
+        transcript: { utterance },
+        spotted
       } = results;
-
       dispatch({
         type: ACTIONS.ADD_PHRASE,
-        content: utterance
+        content: { phrase: utterance, spotted: spotted }
       });
     }
   };

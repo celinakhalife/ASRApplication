@@ -9,7 +9,9 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.ADD_PHRASE: {
-      const { content } = action;
+      const {
+        content: { phrase, spotted }
+      } = action;
       const { phrases } = state;
       const timestamp = new Date().getTime();
 
@@ -17,7 +19,8 @@ export default function(state = initialState, action) {
         const lastIndex = phrases.length - 1;
         const timeDifference = timestamp - phrases[lastIndex].timestamp;
         if (timeDifference < 2000) {
-          phrases[lastIndex].phrase = `${phrases[lastIndex].phrase} ${content}`;
+          phrases[lastIndex].phrase = `${phrases[lastIndex].phrase} ${phrase}`;
+          phrases[lastIndex].spotted.push(spotted);
 
           return {
             ...state,
@@ -25,7 +28,7 @@ export default function(state = initialState, action) {
           };
         }
       }
-      phrases.push({ phrase: content, timestamp: timestamp });
+      phrases.push({ phrase: phrase, spotted: spotted, timestamp: timestamp });
       return {
         ...state,
         phrases: phrases
