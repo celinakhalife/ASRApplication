@@ -82,10 +82,6 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
@@ -100,7 +96,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Libraries Used
 
 [react-redux](https://react-redux.js.org/)
+
 [sanitize-html](https://github.com/apostrophecms/sanitize-html#readme)
+
 [normalize.css](http://necolas.github.io/normalize.css/)
+
 [styled-components](https://styled-components.com/)
 
